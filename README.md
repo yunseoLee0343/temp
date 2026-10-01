@@ -54,3 +54,16 @@ bash scripts/commit_results.sh h100
 The script stages only the selected target result directory plus `environment/version.txt` when present, creates a commit only when there are staged changes, and pushes to `origin/main`. It also fills the repository-local Git identity as `Yunseo Lee <lys139011@gmail.com>` if Lightning has not configured one.
 
 Use the same Triton version for cross-GPU comparisons. The setup script records it in `environment/version.txt`.
+
+## Explicit loop-pipelining experiment
+
+A third kernel, `mini_chunk_fla_pipelined`, keeps the same loop-carried H-state recurrence but changes the chunk loop to:
+
+```python
+for c in tl.range(0, num_chunks, num_stages=PIPE_STAGES):
+    ...
+```
+
+For each requested stage S, both the backend compile option `num_stages=S` and the loop-level `PIPE_STAGES=S` constexpr are used. The original `mini_chunk_fla` remains as the negative control where the backend option alone produced identical artifacts for S=1..4.
+
+After a run, `tools/analyze_pipeline_retention.py` compares TTGIR SHA-256 values and reports stage-dependent `ttg.local_alloc`, `ttg.local_load`, async-related operations, barriers, and unique `!ttg.memdesc<...>` types. Reports are written under `results/<GPU>/analysis/`.
