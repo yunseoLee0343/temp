@@ -71,16 +71,23 @@ def mini_chunk_fla(
             other=0.0,
         )
 
+        # tl.dot requires both operands to have the same input dtype.
+        # h is persistent fp32 state, so cast only the dot operand to fp16.
+        # tl.dot(fp16, fp16) accumulates/returns fp32 here.
         correction = tl.dot(
             w_tile,
             tl.trans(h).to(w_tile.dtype),
         )
 
+        # fp16 - fp32 promotes v_new to fp32. Preserve that fp32 value for
+        # arithmetic, but cast the second dot operand back to k_tile.dtype
+        # because tl.dot again requires matching input dtypes.
         v_new = v_tile - correction
+        v_new_dot = v_new.to(k_tile.dtype)
 
         delta_h = tl.dot(
             tl.trans(k_tile),
-            v_new,
+            v_new_dot,
         )
 
         h = h + tl.trans(delta_h)
