@@ -125,3 +125,47 @@ It also records the `SoftwarePipeliner` internal LowerLoops / ExpandLoops dump m
 ```bash
 bash scripts/commit_results.sh h100
 ```
+
+
+## vLLM Flash Linear Attention fixed-stage experiment
+
+This experiment uses two production Triton kernels derived from
+`vllm-project/vllm/vllm/third_party/flash_linear_attention/ops`:
+
+- positive control: `chunk_gla_fwd_kernel_o` from `kda.py`
+- recurrent target: `chunk_gated_delta_rule_fwd_kernel_h_blockdim64` from `chunk_delta_h.py`
+
+The local copies remove autotune / heuristic wrappers only and fix one upstream-valid tile configuration. The backend `num_stages` is then varied over exactly `2, 3, 4` with `num_warps=4` held constant.
+
+Pinned upstream source blobs used for this experiment:
+
+```text
+chunk_delta_h.py  eb1c3af152974bc54a23b9e17086f05e2cc59868
+kda.py            b5c3a92b65e7ebd38789934c7dae9dbf34aefe6c
+```
+
+The positive control uses `K=128, BK=64`, so its reduction loop executes two K tiles. The recurrent target uses `K=128, V=64, BT=64, BV=64`; optional gating/varlen branches are specialized off while `USE_INITIAL_STATE=True` keeps the production loop-carried H state rooted in an external state tensor.
+
+Run on H100:
+
+```bash
+git pull
+bash scripts/run_h100_vllm_fla_pipeline.sh
+```
+
+The runner compiles each kernel separately at `num_stages=2,3,4`, forces recompilation, enables per-pass MLIR dumping, and writes:
+
+```text
+results/H100-sm90/vllm-fla/
+  stages-2/
+  stages-3/
+  stages-4/
+  pass-dumps/
+  analysis/
+```
+
+Upload the generated artifacts with:
+
+```bash
+bash scripts/commit_results.sh h100
+```
