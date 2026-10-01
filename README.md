@@ -169,3 +169,71 @@ Upload the generated artifacts with:
 ```bash
 bash scripts/commit_results.sh h100
 ```
+
+
+## vLLM fused recurrent speculative-state retention experiment
+
+This experiment targets the production speculative-decoding path derived from:
+
+```text
+vllm/third_party/flash_linear_attention/ops/fused_recurrent.py
+blob: eb08b938c2fbc9609a4b5c1ec31477e4f2388a0e
+```
+
+Unlike the earlier `chunk_delta_h` experiment, the retained object here is the recurrent semantic state `H` itself.
+
+The local probe preserves the two production rules:
+
+```text
+materialize:
+  H_{t+1} -> state_cache[ssm_state_indices[t]]
+
+acceptance / rollback selection:
+  H_start <- state_cache[
+      ssm_state_indices[num_accepted_tokens - 1]
+  ]
+```
+
+The runtime harness varies:
+
+```text
+num_spec = 1, 2, 3, 4
+physical recurrent-state versions = num_spec + 1
+```
+
+For each case it first runs a speculative multi-token recurrence and verifies that slots `1..num_spec+1` contain the reference states `H_1..H_{num_spec+1}`. It then tests every accepted-prefix length by cloning the candidate-state family, executing one additional recurrent token, and checking that the kernel resumed from exactly `state_indices[num_accepted_tokens-1]`.
+
+Run on H100:
+
+```bash
+git pull
+bash scripts/run_h100_vllm_fused_recurrent_spec.sh
+```
+
+Outputs:
+
+```text
+results/H100-sm90/vllm-fused-recurrent/
+  compile/
+    vllm_fused_recurrent_spec.ttir
+    vllm_fused_recurrent_spec.ttgir
+    vllm_fused_recurrent_spec.llir
+    vllm_fused_recurrent_spec.ptx
+    vllm_fused_recurrent_spec.sass
+    metadata.json
+  pass-dumps/
+    fused_recurrent_spec.mlir.txt
+  runtime/
+    num-spec-1.json
+    num-spec-2.json
+    num-spec-3.json
+    num-spec-4.json
+    summary.json
+    summary.txt
+```
+
+Publish the textual results with:
+
+```bash
+bash scripts/commit_results.sh h100
+```
