@@ -4,8 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
-python3 -m venv .venv
-source .venv/bin/activate
+echo "Using Lightning Studio's default environment (no venv creation)."
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
@@ -20,4 +19,4 @@ PY
 
 cat environment/version.txt
 echo
-echo "Setup complete. Activate with: source .venv/bin/activate"
+echo "Setup complete. Use the Studio's current conda environment directly."
