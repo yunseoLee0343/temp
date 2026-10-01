@@ -1,5 +1,5 @@
 {
-  "kernel": "mini_recurrent",
+  "kernel": "mini_chunk_fla_pipelined",
   "sm": 90,
   "warp_size": 32,
   "num_warps": 4,

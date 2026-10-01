@@ -21,7 +21,8 @@
     "cubin"
   ],
   "disassembly": {
-    "tool": "nvdisasm",
-    "ok": true
+    "tool": null,
+    "ok": false,
+    "stderr": "nvdisasm/cuobjdump not found"
   }
 }

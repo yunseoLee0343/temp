@@ -1,9 +1,9 @@
 {
-  "kernel": "mini_recurrent",
+  "kernel": "mini_chunk_fla_pipelined",
   "sm": 90,
   "warp_size": 32,
   "num_warps": 4,
-  "num_stages": 3,
+  "num_stages": 4,
   "triton_version": "3.4.0",
   "artifact_keys": [
     "cubin",
