@@ -3,7 +3,6 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
-source .venv/bin/activate
 
 echo "=== NVIDIA H100 / sm90 ==="
 nvidia-smi || true
