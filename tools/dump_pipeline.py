@@ -19,6 +19,7 @@ sys.path.insert(0, str(ROOT))
 from kernels.mini_recurrent import mini_recurrent
 from kernels.mini_chunk_fla import mini_chunk_fla
 from kernels.mini_chunk_fla_pipelined import mini_chunk_fla_pipelined
+from kernels.mini_chunk_fla_forced import mini_chunk_fla_forced
 
 
 def write_artifact(path: Path, value):
@@ -119,6 +120,37 @@ def source_chunk_pipelined(stage: int):
     )
 
 
+def source_chunk_forced(stage: int):
+    signature = {
+        "k": "*fp16",
+        "v": "*fp16",
+        "w": "*fp16",
+        "h0": "*fp32",
+        "chunk_state": "*fp32",
+        "out": "*fp32",
+        "T": "i32",
+        "K": "constexpr",
+        "V": "constexpr",
+        "BT": "constexpr",
+        "BK": "constexpr",
+        "BV": "constexpr",
+        "PIPE_STAGES": "constexpr",
+    }
+    constants = {
+        "K": 16,
+        "V": 16,
+        "BT": 16,
+        "BK": 16,
+        "BV": 16,
+        "PIPE_STAGES": stage,
+    }
+    return ASTSource(
+        fn=mini_chunk_fla_forced,
+        signature=signature,
+        constexprs=constants,
+    )
+
+
 def compile_one(name: str, src: ASTSource, target: GPUTarget, stage: int, out_dir: Path):
     print(f"[compile] {name}: sm{target.arch}, num_stages={stage}")
     compiled = triton.compile(
@@ -192,6 +224,7 @@ def main():
             ("mini_recurrent", source_recurrent()),
             ("mini_chunk_fla", source_chunk()),
             ("mini_chunk_fla_pipelined", source_chunk_pipelined(stage)),
+            ("mini_chunk_fla_forced", source_chunk_forced(stage)),
         ]
         for name, src in sources:
             compile_one(name, src, target, stage, root)
