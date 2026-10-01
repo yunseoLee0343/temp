@@ -44,10 +44,11 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--dump-dir", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
+    ap.add_argument("--glob", default="mini_chunk_fla_forced.stage-*.mlir.txt")
     args = ap.parse_args()
 
     rows = []
-    for path in sorted(args.dump_dir.glob("mini_chunk_fla_forced.stage-*.mlir.txt")):
+    for path in sorted(args.dump_dir.glob(args.glob)):
         m = re.search(r"stage-(\d+)", path.name)
         stage = int(m.group(1)) if m else None
         row = summarize(path)
