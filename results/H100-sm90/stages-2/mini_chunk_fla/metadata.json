@@ -1,0 +1,27 @@
+{
+  "kernel": "mini_chunk_fla",
+  "sm": 90,
+  "warp_size": 32,
+  "num_warps": 4,
+  "num_stages": 2,
+  "triton_version": "3.4.0",
+  "artifact_keys": [
+    "cubin",
+    "llir",
+    "ptx",
+    "source",
+    "ttgir",
+    "ttir"
+  ],
+  "saved_artifacts": [
+    "ttir",
+    "ttgir",
+    "llir",
+    "ptx",
+    "cubin"
+  ],
+  "disassembly": {
+    "tool": "nvdisasm",
+    "ok": true
+  }
+}
