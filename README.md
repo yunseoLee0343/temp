@@ -39,14 +39,18 @@ Results are written to `results/L4-sm89/` or `results/H100-sm90/`.
 
 Each kernel directory can contain `.ttir`, `.ttgir`, `.llir`, `.ptx`, `.cubin`, `.sass`, and `metadata.json`.
 
-`*.cubin` is ignored by Git. Push the textual artifacts and metadata:
+`*.cubin` is ignored by Git. Publish textual artifacts and metadata with:
 
 ```bash
-git add results environment/version.txt
-git commit -m "Add L4 Triton pipeline dumps"
-git push origin main
+bash scripts/commit_results.sh l4
 ```
 
-Use the analogous H100 commit message after the H100 run.
+or, after an H100 run:
+
+```bash
+bash scripts/commit_results.sh h100
+```
+
+The script stages only the selected target result directory plus `environment/version.txt` when present, creates a commit only when there are staged changes, and pushes to `origin/main`. It also fills the repository-local Git identity as `Yunseo Lee <lys139011@gmail.com>` if Lightning has not configured one.
 
 Use the same Triton version for cross-GPU comparisons. The setup script records it in `environment/version.txt`.
