@@ -1,0 +1,61 @@
+{
+  "torch": "2.8.0+cu128",
+  "triton": "3.4.0",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "cases": [
+    {
+      "num_spec": 1,
+      "physical_state_versions": 2,
+      "state_indices": [
+        [
+          1,
+          2
+        ]
+      ],
+      "candidate_max_error": 1.1641532182693481e-10,
+      "acceptance_max_error": 4.656612873077393e-10
+    },
+    {
+      "num_spec": 2,
+      "physical_state_versions": 3,
+      "state_indices": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "candidate_max_error": 2.3283064365386963e-10,
+      "acceptance_max_error": 4.656612873077393e-10
+    },
+    {
+      "num_spec": 3,
+      "physical_state_versions": 4,
+      "state_indices": [
+        [
+          1,
+          2,
+          3,
+          4
+        ]
+      ],
+      "candidate_max_error": 4.656612873077393e-10,
+      "acceptance_max_error": 6.984919309616089e-10
+    },
+    {
+      "num_spec": 4,
+      "physical_state_versions": 5,
+      "state_indices": [
+        [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      ],
+      "candidate_max_error": 4.656612873077393e-10,
+      "acceptance_max_error": 9.313225746154785e-10
+    }
+  ]
+}

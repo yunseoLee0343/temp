@@ -1,0 +1,7 @@
+vLLM fused recurrent speculative-state retention
+
+num_spec | physical H slots | candidate error | acceptance/rollback error
+       1 |                2 | 1.1641532e-10 | 4.6566129e-10
+       2 |                3 | 2.3283064e-10 | 4.6566129e-10
+       3 |                4 | 4.6566129e-10 | 6.9849193e-10
+       4 |                5 | 4.6566129e-10 | 9.3132257e-10

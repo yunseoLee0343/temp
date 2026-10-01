@@ -1,0 +1,46 @@
+{
+  "gpu_label": "H100",
+  "sm": 90,
+  "triton_version": "3.4.0",
+  "python": "3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 13:09:17) [GCC 11.2.0]",
+  "platform": "Linux-6.8.0-1069-gcp-x86_64-with-glibc2.39",
+  "num_warps": 1,
+  "num_stages": 3,
+  "artifact_keys": [
+    "cubin",
+    "llir",
+    "ptx",
+    "source",
+    "ttgir",
+    "ttir"
+  ],
+  "saved_artifacts": [
+    "ttir",
+    "ttgir",
+    "llir",
+    "ptx",
+    "cubin"
+  ],
+  "disassembly": {
+    "tool": "nvdisasm",
+    "ok": true
+  },
+  "upstream_source": {
+    "path": "vllm/third_party/flash_linear_attention/ops/fused_recurrent.py",
+    "blob": "eb08b938c2fbc9609a4b5c1ec31477e4f2388a0e"
+  },
+  "probe_specialization": {
+    "B": 1,
+    "H": 1,
+    "HV": 1,
+    "K": 32,
+    "V": 32,
+    "BK": 32,
+    "BV": 32,
+    "IS_CONTINUOUS_BATCHING": true,
+    "IS_SPEC_DECODING": true,
+    "INPLACE_FINAL_STATE": true,
+    "stride_indices_seq": 5
+  },
+  "note": "T remains runtime/dynamic, matching upstream do_not_specialize. Runtime num_spec experiments are recorded separately."
+}

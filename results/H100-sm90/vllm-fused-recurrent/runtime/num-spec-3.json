@@ -1,0 +1,143 @@
+{
+  "num_spec": 3,
+  "physical_state_versions": 4,
+  "state_indices": [
+    [
+      1,
+      2,
+      3,
+      4
+    ]
+  ],
+  "null_slot": 0,
+  "candidate_materialization": {
+    "max_error": 4.656612873077393e-10,
+    "slots": [
+      {
+        "semantic_version": "H_1",
+        "token_index": 0,
+        "physical_slot": 1,
+        "max_abs_error_vs_reference": 0.0,
+        "summary": {
+          "sum": 0.5657625794410706,
+          "l2": 0.018016105517745018,
+          "max_abs": 0.0008278600289486349,
+          "sample": [
+            0.0003299999807495624,
+            0.00033824998536147177,
+            0.00034649998997338116,
+            0.0003547499654814601,
+            0.00036299999919719994,
+            0.0003712499747052789,
+            0.0003795000084210187,
+            0.00038774998392909765
+          ]
+        }
+      },
+      {
+        "semantic_version": "H_2",
+        "token_index": 1,
+        "physical_slot": 2,
+        "max_abs_error_vs_reference": 1.1641532182693481e-10,
+        "summary": {
+          "sum": 1.1183629035949707,
+          "l2": 0.03560823202133179,
+          "max_abs": 0.0016342864837497473,
+          "sample": [
+            0.0006537392036989331,
+            0.0006699991063214839,
+            0.0006862590671516955,
+            0.0007025189115665853,
+            0.0007187788723967969,
+            0.0007350387750193477,
+            0.0007512986776418984,
+            0.0007675585802644491
+          ]
+        }
+      },
+      {
+        "semantic_version": "H_3",
+        "token_index": 2,
+        "physical_slot": 3,
+        "max_abs_error_vs_reference": 2.3283064365386963e-10,
+        "summary": {
+          "sum": 1.655228614807129,
+          "l2": 0.05269458517432213,
+          "max_abs": 0.0024155552964657545,
+          "sample": [
+            0.0009696951019577682,
+            0.0009936883579939604,
+            0.0010176816722378135,
+            0.0010416748700663447,
+            0.0010656681843101978,
+            0.001089661498554051,
+            0.001113654812797904,
+            0.0011376480106264353
+          ]
+        }
+      },
+      {
+        "semantic_version": "H_4",
+        "token_index": 3,
+        "physical_slot": 4,
+        "max_abs_error_vs_reference": 4.656612873077393e-10,
+        "summary": {
+          "sum": 2.1740853786468506,
+          "l2": 0.06920287758111954,
+          "max_abs": 0.0031683940906077623,
+          "sample": [
+            0.001276507624424994,
+            0.001307925907894969,
+            0.0013393443077802658,
+            0.0013707625912502408,
+            0.0014021808747202158,
+            0.0014335992746055126,
+            0.0014650176744908094,
+            0.0014964359579607844
+          ]
+        }
+      }
+    ]
+  },
+  "acceptance_conditioned_reuse": {
+    "max_error": 6.984919309616089e-10,
+    "checks": [
+      {
+        "num_accepted_tokens": 1,
+        "selected_column": 0,
+        "selected_physical_slot": 1,
+        "selected_semantic_state": "H_1",
+        "next_write_slot": 1,
+        "max_abs_error_vs_selected_state_reference": 2.3283064365386963e-10
+      },
+      {
+        "num_accepted_tokens": 2,
+        "selected_column": 1,
+        "selected_physical_slot": 2,
+        "selected_semantic_state": "H_2",
+        "next_write_slot": 1,
+        "max_abs_error_vs_selected_state_reference": 4.656612873077393e-10
+      },
+      {
+        "num_accepted_tokens": 3,
+        "selected_column": 2,
+        "selected_physical_slot": 3,
+        "selected_semantic_state": "H_3",
+        "next_write_slot": 1,
+        "max_abs_error_vs_selected_state_reference": 4.656612873077393e-10
+      },
+      {
+        "num_accepted_tokens": 4,
+        "selected_column": 3,
+        "selected_physical_slot": 4,
+        "selected_semantic_state": "H_4",
+        "next_write_slot": 1,
+        "max_abs_error_vs_selected_state_reference": 6.984919309616089e-10
+      }
+    ]
+  },
+  "kernel_contract": {
+    "store_rule": "H_{t+1} -> state_cache[ssm_state_indices[t]]",
+    "selection_rule": "H_start <- state_cache[ssm_state_indices[num_accepted_tokens-1]]"
+  }
+}
