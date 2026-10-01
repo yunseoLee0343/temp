@@ -1,0 +1,9 @@
+{
+  "kernel": "mini_chunk_fla_forced",
+  "stage": 1,
+  "sm": 90,
+  "triton_version": "3.4.0",
+  "MLIR_ENABLE_DUMP": "1",
+  "MLIR_DUMP_PATH": "results/H100-sm90/pass-dumps/mini_chunk_fla_forced.stage-1.mlir.txt",
+  "TRITON_ALWAYS_COMPILE": "1"
+}

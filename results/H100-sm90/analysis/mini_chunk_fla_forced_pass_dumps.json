@@ -1,0 +1,566 @@
+[
+  {
+    "file": "results/H100-sm90/pass-dumps/mini_chunk_fla_forced.stage-1.mlir.txt",
+    "bytes": 1918331,
+    "counts": {
+      "latency_attr": 0,
+      "loop_stage_attr": 0,
+      "loop_cluster_attr": 0,
+      "scheduled_max_stage": 0,
+      "async_copy_g2l": 0,
+      "async_commit": 0,
+      "async_wait": 0,
+      "local_alloc": 15,
+      "local_load": 15,
+      "memdesc": 30,
+      "software_lowerloops_marker": 0,
+      "software_expandloops_marker": 0
+    },
+    "evidence": [
+      {
+        "line": 8423,
+        "text": "%56 = ttg.local_alloc %53 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8424,
+        "text": "%57 = ttg.local_load %56 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8595,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8598,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8768,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8771,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8941,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8944,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9114,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9117,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9287,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9290,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9460,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9463,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9633,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9636,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9806,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9809,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9979,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9982,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10152,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10155,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10331,
+        "text": "%57 = ttg.local_alloc %56 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10334,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10508,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10511,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10685,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10688,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10862,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10865,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      }
+    ],
+    "stage": 1
+  },
+  {
+    "file": "results/H100-sm90/pass-dumps/mini_chunk_fla_forced.stage-2.mlir.txt",
+    "bytes": 1918331,
+    "counts": {
+      "latency_attr": 0,
+      "loop_stage_attr": 0,
+      "loop_cluster_attr": 0,
+      "scheduled_max_stage": 0,
+      "async_copy_g2l": 0,
+      "async_commit": 0,
+      "async_wait": 0,
+      "local_alloc": 15,
+      "local_load": 15,
+      "memdesc": 30,
+      "software_lowerloops_marker": 0,
+      "software_expandloops_marker": 0
+    },
+    "evidence": [
+      {
+        "line": 8423,
+        "text": "%56 = ttg.local_alloc %53 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8424,
+        "text": "%57 = ttg.local_load %56 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8595,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8598,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8768,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8771,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8941,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8944,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9114,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9117,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9287,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9290,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9460,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9463,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9633,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9636,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9806,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9809,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9979,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9982,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10152,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10155,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10331,
+        "text": "%57 = ttg.local_alloc %56 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10334,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10508,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10511,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10685,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10688,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10862,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10865,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      }
+    ],
+    "stage": 2
+  },
+  {
+    "file": "results/H100-sm90/pass-dumps/mini_chunk_fla_forced.stage-3.mlir.txt",
+    "bytes": 1918331,
+    "counts": {
+      "latency_attr": 0,
+      "loop_stage_attr": 0,
+      "loop_cluster_attr": 0,
+      "scheduled_max_stage": 0,
+      "async_copy_g2l": 0,
+      "async_commit": 0,
+      "async_wait": 0,
+      "local_alloc": 15,
+      "local_load": 15,
+      "memdesc": 30,
+      "software_lowerloops_marker": 0,
+      "software_expandloops_marker": 0
+    },
+    "evidence": [
+      {
+        "line": 8423,
+        "text": "%56 = ttg.local_alloc %53 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8424,
+        "text": "%57 = ttg.local_load %56 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8595,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8598,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8768,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8771,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8941,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8944,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9114,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9117,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9287,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9290,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9460,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9463,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9633,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9636,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9806,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9809,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9979,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9982,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10152,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10155,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10331,
+        "text": "%57 = ttg.local_alloc %56 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10334,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10508,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10511,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10685,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10688,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10862,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10865,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      }
+    ],
+    "stage": 3
+  },
+  {
+    "file": "results/H100-sm90/pass-dumps/mini_chunk_fla_forced.stage-4.mlir.txt",
+    "bytes": 1918331,
+    "counts": {
+      "latency_attr": 0,
+      "loop_stage_attr": 0,
+      "loop_cluster_attr": 0,
+      "scheduled_max_stage": 0,
+      "async_copy_g2l": 0,
+      "async_commit": 0,
+      "async_wait": 0,
+      "local_alloc": 15,
+      "local_load": 15,
+      "memdesc": 30,
+      "software_lowerloops_marker": 0,
+      "software_expandloops_marker": 0
+    },
+    "evidence": [
+      {
+        "line": 8423,
+        "text": "%56 = ttg.local_alloc %53 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8424,
+        "text": "%57 = ttg.local_load %56 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8595,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8598,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8768,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8771,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 8941,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 8944,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9114,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9117,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9287,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked1>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9290,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9460,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9463,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9633,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9636,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9806,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9809,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 9979,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 9982,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10152,
+        "text": "%55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10155,
+        "text": "%58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10331,
+        "text": "%57 = ttg.local_alloc %56 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10334,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10508,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10511,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10685,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10688,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      },
+      {
+        "line": 10862,
+        "text": "%57 = ttg.local_alloc %56 {allocation.offset = 0 : i32} : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)"
+      },
+      {
+        "line": 10865,
+        "text": "%60 = ttg.local_load %57 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)"
+      }
+    ],
+    "stage": 4
+  }
+]

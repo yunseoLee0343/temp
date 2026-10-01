@@ -1,0 +1,35 @@
+kernel: mini_chunk_fla_forced
+all TTGIR identical: False
+
+stage=1 sha256=a8ea6b931060b96fc2cdfd90c6291e07bd2284f99f6a217537c93d306fef2e24 counts={'scf_for': 1, 'local_alloc': 1, 'local_load': 1, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 16x16xf16, #shared, #smem
+  interesting TTGIR:
+    %35 = scf.for %arg7 = %c0_i32 to %29 step %c1_i32 iter_args(%arg8 = %28) -> (tensor<16x16xf32, #linear>)  : i32 {
+    %55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)
+    %58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)
+
+stage=2 sha256=52f9174d06571756413f3bbe274683be42f4ecf25953f68d59cf4dd3593ebd44 counts={'scf_for': 1, 'local_alloc': 1, 'local_load': 1, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 16x16xf16, #shared, #smem
+  interesting TTGIR:
+    %35 = scf.for %arg7 = %c0_i32 to %29 step %c1_i32 iter_args(%arg8 = %28) -> (tensor<16x16xf32, #linear>)  : i32 {
+    %55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)
+    %58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)
+
+stage=3 sha256=74fc40d236ab4b9ff24612a85f171ef9b040c2582f1e06672531a769aca3c15a counts={'scf_for': 1, 'local_alloc': 1, 'local_load': 1, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 16x16xf16, #shared, #smem
+  interesting TTGIR:
+    %35 = scf.for %arg7 = %c0_i32 to %29 step %c1_i32 iter_args(%arg8 = %28) -> (tensor<16x16xf32, #linear>)  : i32 {
+    %55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)
+    %58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)
+
+stage=4 sha256=dd1f3d3843f8be81062dec562c38d6cf5ea016178641cb621b322ba1b8a20b2c counts={'scf_for': 1, 'local_alloc': 1, 'local_load': 1, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 16x16xf16, #shared, #smem
+  interesting TTGIR:
+    %35 = scf.for %arg7 = %c0_i32 to %29 step %c1_i32 iter_args(%arg8 = %28) -> (tensor<16x16xf32, #linear>)  : i32 {
+    %55 = ttg.local_alloc %54 : (tensor<16x16xf16, #blocked>) -> !ttg.memdesc<16x16xf16, #shared, #smem> loc(#loc33)
+    %58 = ttg.local_load %55 : !ttg.memdesc<16x16xf16, #shared, #smem> -> tensor<16x16xf16, #ttg.dot_op<{opIdx = 0, parent = #mma, kWidth = 2}>> loc(#loc33)
+
