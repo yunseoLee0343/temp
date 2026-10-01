@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 
 from kernels.mini_recurrent import mini_recurrent
 from kernels.mini_chunk_fla import mini_chunk_fla
+from kernels.mini_chunk_fla_pipelined import mini_chunk_fla_pipelined
 
 
 def write_artifact(path: Path, value):
@@ -85,6 +86,37 @@ def source_chunk():
     }
     constants = {"K": 16, "V": 16, "BT": 16, "BK": 16, "BV": 16}
     return ASTSource(fn=mini_chunk_fla, signature=signature, constexprs=constants)
+
+
+def source_chunk_pipelined(stage: int):
+    signature = {
+        "k": "*fp16",
+        "v": "*fp16",
+        "w": "*fp16",
+        "h0": "*fp32",
+        "chunk_state": "*fp32",
+        "out": "*fp32",
+        "T": "i32",
+        "K": "constexpr",
+        "V": "constexpr",
+        "BT": "constexpr",
+        "BK": "constexpr",
+        "BV": "constexpr",
+        "PIPE_STAGES": "constexpr",
+    }
+    constants = {
+        "K": 16,
+        "V": 16,
+        "BT": 16,
+        "BK": 16,
+        "BV": 16,
+        "PIPE_STAGES": stage,
+    }
+    return ASTSource(
+        fn=mini_chunk_fla_pipelined,
+        signature=signature,
+        constexprs=constants,
+    )
 
 
 def compile_one(name: str, src: ASTSource, target: GPUTarget, stage: int, out_dir: Path):
@@ -155,11 +187,12 @@ def main():
     }
     (root / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
-    sources = [
-        ("mini_recurrent", source_recurrent()),
-        ("mini_chunk_fla", source_chunk()),
-    ]
     for stage in args.stages:
+        sources = [
+            ("mini_recurrent", source_recurrent()),
+            ("mini_chunk_fla", source_chunk()),
+            ("mini_chunk_fla_pipelined", source_chunk_pipelined(stage)),
+        ]
         for name, src in sources:
             compile_one(name, src, target, stage, root)
 
