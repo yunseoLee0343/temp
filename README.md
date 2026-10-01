@@ -67,3 +67,61 @@ for c in tl.range(0, num_chunks, num_stages=PIPE_STAGES):
 For each requested stage S, both the backend compile option `num_stages=S` and the loop-level `PIPE_STAGES=S` constexpr are used. The original `mini_chunk_fla` remains as the negative control where the backend option alone produced identical artifacts for S=1..4.
 
 After a run, `tools/analyze_pipeline_retention.py` compares TTGIR SHA-256 values and reports stage-dependent `ttg.local_alloc`, `ttg.local_load`, async-related operations, barriers, and unique `!ttg.memdesc<...>` types. Reports are written under `results/<GPU>/analysis/`.
+
+
+## Source-driven software-pipeliner probe
+
+`mini_chunk_fla_forced` is designed directly from Triton's current pipeliner gates in:
+
+- `AssignLatencies.cpp`
+- `ScheduleLoops.cpp`
+- `LowerLoops.cpp`
+- `SoftwarePipeliner.cpp`
+
+The probe differs from the previous kernel in one important way: the steady-state loop iterates only over `T // BT` full chunks, so the K/V/W loads have no runtime tail mask and no non-zero `other` value. This is intended to make a contiguous fp16 load width of at least 32 bits provable to `ModuleAxisInfoAnalysis`, satisfying `canBeConvertedToAsyncLoad()` and allowing non-zero load latency / stage distance to materialize.
+
+The loop still carries H as a distance-1 recurrent state, while K and W have direct load-to-dot paths and V reaches the second dot through the value update.
+
+Run only this source-driven experiment on H100 with:
+
+```bash
+git pull
+bash scripts/run_h100_forced_pipeline.sh
+```
+
+The runner forces recompilation and enables Triton's official per-pass MLIR dump knobs:
+
+```text
+TRITON_ALWAYS_COMPILE=1
+MLIR_ENABLE_DUMP=1
+MLIR_DUMP_PATH=...
+```
+
+Outputs include final artifacts under:
+
+```text
+results/H100-sm90/stages-{1,2,3,4}/mini_chunk_fla_forced/
+```
+
+and raw pass-manager dumps under:
+
+```text
+results/H100-sm90/pass-dumps/
+```
+
+The pass-dump analyzer searches for latency/schedule attributes and the concrete lowering signatures we want to observe:
+
+```text
+ttg.async_copy_global_to_local
+ttg.async_commit_group
+ttg.async_wait
+ttg.local_alloc
+ttg.local_load
+!ttg.memdesc<...>
+```
+
+It also records the `SoftwarePipeliner` internal LowerLoops / ExpandLoops dump markers when present. Publish the results with:
+
+```bash
+bash scripts/commit_results.sh h100
+```
