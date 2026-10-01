@@ -13,6 +13,8 @@ Both kernels are compiled with `num_stages = 1,2,3,4`.
 
 ## Lightning Studio
 
+Lightning Studio already provides one default conda environment and may reject creation of a second venv. This repo therefore installs Triton into the Studio's current environment.
+
 First setup:
 
 ```bash
