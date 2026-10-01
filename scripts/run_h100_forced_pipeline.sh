@@ -25,6 +25,10 @@ python tools/analyze_pipeline_retention.py \
   --kernel mini_chunk_fla_forced \
   --stages 1 2 3 4
 
+python tools/analyze_pass_dumps.py \
+  --dump-dir results/H100-sm90/pass-dumps \
+  --out results/H100-sm90/analysis/mini_chunk_fla_forced_pass_dumps.json
+
 echo
 echo "Forced-pipeline artifacts:"
 echo "  results/H100-sm90/stages-{1,2,3,4}/mini_chunk_fla_forced/"
