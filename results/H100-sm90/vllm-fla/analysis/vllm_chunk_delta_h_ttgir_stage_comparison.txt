@@ -1,0 +1,81 @@
+kernel: vllm_chunk_delta_h
+all TTGIR identical: True
+
+stage=2 sha256=82c9b734320ce2aba22e9b72848f29c20c2825a84cae76a815923242807c0cd8 counts={'scf_for': 1, 'local_alloc': 7, 'local_load': 0, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 64x64xf16, #shared, #smem
+    - 64x64xf16, #shared1, #smem
+  interesting TTGIR:
+    %89:2 = scf.for %arg12 = %c0_i32 to %4 step %c1_i32 iter_args(%arg13 = %50, %arg14 = %64) -> (tensor<64x64xf32, #linear>, tensor<64x64xf32, #linear>)  : i32 {
+    %118 = ttg.local_alloc %117 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc27)
+    %121 = ttg.local_alloc %120 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc42)
+    ttng.fence_async_shared {bCluster = false} loc(#loc43)
+    %122 = ttng.warp_group_dot %118, %121, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc43)
+    %123:3 = ttng.warp_group_dot_wait %122, %118, %121 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc43)
+    %128 = ttg.local_alloc %127 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc44)
+    %131 = ttg.local_alloc %130 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc46)
+    ttng.fence_async_shared {bCluster = false} loc(#loc47)
+    %132 = ttng.warp_group_dot %128, %131, %123#0 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc47)
+    %133:3 = ttng.warp_group_dot_wait %132, %128, %131 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc47)
+    %144 = ttg.local_alloc %143 : (tensor<64x64xf16, #mma>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc49)
+    %156 = ttg.local_alloc %155 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc29)
+    ttng.fence_async_shared {bCluster = false} loc(#loc50)
+    %157 = ttng.warp_group_dot %156, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc50)
+    %158:3 = ttng.warp_group_dot_wait %157, %156, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc50)
+    %165 = ttg.local_alloc %164 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc30)
+    ttng.fence_async_shared {bCluster = false} loc(#loc53)
+    %166 = ttng.warp_group_dot %165, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc53)
+    %167:3 = ttng.warp_group_dot_wait %166, %165, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc53)
+
+stage=3 sha256=82c9b734320ce2aba22e9b72848f29c20c2825a84cae76a815923242807c0cd8 counts={'scf_for': 1, 'local_alloc': 7, 'local_load': 0, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 64x64xf16, #shared, #smem
+    - 64x64xf16, #shared1, #smem
+  interesting TTGIR:
+    %89:2 = scf.for %arg12 = %c0_i32 to %4 step %c1_i32 iter_args(%arg13 = %50, %arg14 = %64) -> (tensor<64x64xf32, #linear>, tensor<64x64xf32, #linear>)  : i32 {
+    %118 = ttg.local_alloc %117 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc27)
+    %121 = ttg.local_alloc %120 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc42)
+    ttng.fence_async_shared {bCluster = false} loc(#loc43)
+    %122 = ttng.warp_group_dot %118, %121, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc43)
+    %123:3 = ttng.warp_group_dot_wait %122, %118, %121 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc43)
+    %128 = ttg.local_alloc %127 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc44)
+    %131 = ttg.local_alloc %130 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc46)
+    ttng.fence_async_shared {bCluster = false} loc(#loc47)
+    %132 = ttng.warp_group_dot %128, %131, %123#0 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc47)
+    %133:3 = ttng.warp_group_dot_wait %132, %128, %131 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc47)
+    %144 = ttg.local_alloc %143 : (tensor<64x64xf16, #mma>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc49)
+    %156 = ttg.local_alloc %155 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc29)
+    ttng.fence_async_shared {bCluster = false} loc(#loc50)
+    %157 = ttng.warp_group_dot %156, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc50)
+    %158:3 = ttng.warp_group_dot_wait %157, %156, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc50)
+    %165 = ttg.local_alloc %164 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc30)
+    ttng.fence_async_shared {bCluster = false} loc(#loc53)
+    %166 = ttng.warp_group_dot %165, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc53)
+    %167:3 = ttng.warp_group_dot_wait %166, %165, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc53)
+
+stage=4 sha256=82c9b734320ce2aba22e9b72848f29c20c2825a84cae76a815923242807c0cd8 counts={'scf_for': 1, 'local_alloc': 7, 'local_load': 0, 'local_store': 0, 'async_copy': 0, 'async_wait': 0, 'memdesc_subview': 0, 'barrier': 0}
+  memdesc types:
+    - 64x64xf16, #shared, #smem
+    - 64x64xf16, #shared1, #smem
+  interesting TTGIR:
+    %89:2 = scf.for %arg12 = %c0_i32 to %4 step %c1_i32 iter_args(%arg13 = %50, %arg14 = %64) -> (tensor<64x64xf32, #linear>, tensor<64x64xf32, #linear>)  : i32 {
+    %118 = ttg.local_alloc %117 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc27)
+    %121 = ttg.local_alloc %120 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc42)
+    ttng.fence_async_shared {bCluster = false} loc(#loc43)
+    %122 = ttng.warp_group_dot %118, %121, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc43)
+    %123:3 = ttng.warp_group_dot_wait %122, %118, %121 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc43)
+    %128 = ttg.local_alloc %127 : (tensor<64x64xf16, #blocked>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc44)
+    %131 = ttg.local_alloc %130 : (tensor<64x64xf16, #linear1>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc46)
+    ttng.fence_async_shared {bCluster = false} loc(#loc47)
+    %132 = ttng.warp_group_dot %128, %131, %123#0 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc47)
+    %133:3 = ttng.warp_group_dot_wait %132, %128, %131 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc47)
+    %144 = ttg.local_alloc %143 : (tensor<64x64xf16, #mma>) -> !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc49)
+    %156 = ttg.local_alloc %155 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc29)
+    ttng.fence_async_shared {bCluster = false} loc(#loc50)
+    %157 = ttng.warp_group_dot %156, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc50)
+    %158:3 = ttng.warp_group_dot_wait %157, %156, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc50)
+    %165 = ttg.local_alloc %164 : (tensor<64x64xf16, #blocked1>) -> !ttg.memdesc<64x64xf16, #shared1, #smem> loc(#loc30)
+    ttng.fence_async_shared {bCluster = false} loc(#loc53)
+    %166 = ttng.warp_group_dot %165, %144, %cst_12 {inputPrecision = 0 : i32, isAsync = true} : !ttg.memdesc<64x64xf16, #shared1, #smem> * !ttg.memdesc<64x64xf16, #shared, #smem> -> tensor<64x64xf32, #mma> loc(#loc53)
+    %167:3 = ttng.warp_group_dot_wait %166, %165, %144 {pendings = 0 : i32} : tensor<64x64xf32, #mma>, !ttg.memdesc<64x64xf16, #shared1, #smem>, !ttg.memdesc<64x64xf16, #shared, #smem> loc(#loc53)
+

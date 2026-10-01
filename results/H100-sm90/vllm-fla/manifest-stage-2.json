@@ -1,0 +1,36 @@
+{
+  "gpu_label": "H100",
+  "sm": 90,
+  "stage": 2,
+  "triton_version": "3.4.0",
+  "python": "3.12.11 | packaged by Anaconda, Inc. | (main, Jun  5 2025, 13:09:17) [GCC 11.2.0]",
+  "platform": "Linux-6.8.0-1069-gcp-x86_64-with-glibc2.39",
+  "target": {
+    "backend": "cuda",
+    "arch": 90,
+    "warp_size": 32
+  },
+  "fixed_num_warps": 4,
+  "stage_is_only_backend_tuning_variable": true,
+  "upstream_sources": {
+    "chunk_delta_h.py_blob": "eb1c3af152974bc54a23b9e17086f05e2cc59868",
+    "kda.py_blob": "b5c3a92b65e7ebd38789934c7dae9dbf34aefe6c"
+  },
+  "positive_control": {
+    "kernel": "vllm_chunk_gla_o_kernel",
+    "K": 128,
+    "V": 64,
+    "BT": 64,
+    "BK": 64,
+    "BV": 64
+  },
+  "recurrent_target": {
+    "kernel": "vllm_chunk_delta_h_kernel",
+    "H": 1,
+    "Hg": 1,
+    "K": 128,
+    "V": 64,
+    "BT": 64,
+    "BV": 64
+  }
+}

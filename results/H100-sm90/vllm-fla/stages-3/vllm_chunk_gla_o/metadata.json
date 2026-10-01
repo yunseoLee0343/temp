@@ -1,0 +1,29 @@
+{
+  "kernel": "vllm_chunk_gla_o",
+  "sm": 90,
+  "warp_size": 32,
+  "num_warps": 4,
+  "num_stages": 3,
+  "triton_version": "3.4.0",
+  "artifact_keys": [
+    "cubin",
+    "llir",
+    "ptx",
+    "source",
+    "ttgir",
+    "ttir"
+  ],
+  "saved_artifacts": [
+    "ttir",
+    "ttgir",
+    "llir",
+    "ptx",
+    "cubin"
+  ],
+  "disassembly": {
+    "tool": null,
+    "ok": false,
+    "stderr": "nvdisasm/cuobjdump not found"
+  },
+  "source_origin": "vllm-project/vllm vllm/third_party/flash_linear_attention/ops"
+}
