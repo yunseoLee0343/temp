@@ -237,6 +237,10 @@ def main():
         "target": {"backend": "cuda", "arch": args.sm, "warp_size": 32},
         "fixed_num_warps": 4,
         "stage_is_only_backend_tuning_variable": True,
+        "upstream_sources": {
+            "chunk_delta_h.py_blob": "eb1c3af152974bc54a23b9e17086f05e2cc59868",
+            "kda.py_blob": "b5c3a92b65e7ebd38789934c7dae9dbf34aefe6c",
+        },
         "positive_control": {
             "kernel": "vllm_chunk_gla_o_kernel",
             "K": 128,
