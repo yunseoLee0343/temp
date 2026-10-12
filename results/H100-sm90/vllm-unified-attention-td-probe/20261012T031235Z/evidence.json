@@ -1,0 +1,8 @@
+{
+  "status": "PROBE_FAILED",
+  "exit_code": 134,
+  "ptx_count": 0,
+  "tensor_tma_count": 0,
+  "samples": [],
+  "provenance": "standalone vLLM-inspired TD control, not full vLLM"
+}
