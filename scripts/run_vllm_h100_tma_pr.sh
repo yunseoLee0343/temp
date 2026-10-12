@@ -10,7 +10,7 @@ RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)"
 DEST="$ROOT/results/H100-sm90/vllm-unified-attention-td-probe/$RUN_ID"
 mkdir -p "$DEST/kernel-dump" "$DEST/pass-dumps" "$DEST/logs"
 export RESULT_DIR="$DEST" TRITON_ALWAYS_COMPILE=1 TRITON_KERNEL_DUMP=1 MLIR_ENABLE_DUMP=1
-export TRITON_DUMP_DIR="$DEST/kernel-dump" MLIR_DUMP_PATH="$DEST/pass-dumps"
+export TRITON_DUMP_DIR="$DEST/kernel-dump" MLIR_DUMP_PATH="$DEST/pass-dumps/combined-pass-dump.mlir.txt"
 export TRITON_CACHE_DIR="$DEST/triton-cache"
 python - <<'PY' | tee "$DEST/environment.txt"
 import torch, triton, sys, subprocess
@@ -72,8 +72,8 @@ python "$DEST/td_probe.py" > "$DEST/logs/probe.stdout.log" 2> "$DEST/logs/probe.
 RC=$?
 set -e
 echo "$RC" > "$DEST/logs/exit-code.txt"
-if grep -q 'IR Dump Before' "$DEST/logs/probe.stderr.log"; then
-  cp "$DEST/logs/probe.stderr.log" "$DEST/pass-dumps/combined-pass-dump.txt"
+if [[ ! -s "$MLIR_DUMP_PATH" ]] && grep -q 'IR Dump Before' "$DEST/logs/probe.stderr.log"; then
+  cp "$DEST/logs/probe.stderr.log" "$MLIR_DUMP_PATH"
 fi
 python - "$DEST" "$RC" <<'PY'
 from pathlib import Path
