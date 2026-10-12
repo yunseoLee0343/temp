@@ -1,0 +1,6 @@
+{
+  "correctness": "PASS",
+  "max_abs_error": 0.0,
+  "triton": "3.6.0",
+  "torch": "2.11.0+cu128"
+}

@@ -1,0 +1,4 @@
+python 3.14.7 | packaged by Anaconda, Inc. | (main, Aug 14 2026, 10:21:40) [GCC 14.3.0]
+torch 2.11.0+cu128 cuda 12.8 triton 3.6.0
+gpu NVIDIA H100 80GB HBM3 capability (9, 0)
+git fc8d90c7a2bbbc87fbdadb7f4e5830e0d0a4a9bd

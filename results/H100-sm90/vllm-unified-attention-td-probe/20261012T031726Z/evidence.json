@@ -1,0 +1,21 @@
+{
+  "status": "TMA_PTX_CONFIRMED",
+  "exit_code": 0,
+  "ptx_count": 3,
+  "tensor_tma_count": 3,
+  "samples": [
+    {
+      "ptx": "attention_td_control.ptx",
+      "line": "@%p4 cp.async.bulk.tensor.2d.shared::cluster.global.mbarrier::complete_tx::bytes [%r43], [%rd11, {%r44, %r45}], [%r42];"
+    },
+    {
+      "ptx": "triton-cache/NQA75YCAXITRLJBBBQUO7SRJBGU2YCRM7KDFAQOMHCIUPVNRGMAQ/attention_td_control.ptx",
+      "line": "@%p4 cp.async.bulk.tensor.2d.shared::cluster.global.mbarrier::complete_tx::bytes [%r43], [%rd11, {%r44, %r45}], [%r42];"
+    },
+    {
+      "ptx": "kernel-dump/RUEXQNVRGBQMC3VULXPPN2X3LRPADGT5WT7W654IFCHJ32X2JC3Q/attention_td_control.ptx",
+      "line": "@%p4 cp.async.bulk.tensor.2d.shared::cluster.global.mbarrier::complete_tx::bytes [%r43], [%rd11, {%r44, %r45}], [%r42];"
+    }
+  ],
+  "provenance": "standalone vLLM-inspired TD control, not full vLLM"
+}
