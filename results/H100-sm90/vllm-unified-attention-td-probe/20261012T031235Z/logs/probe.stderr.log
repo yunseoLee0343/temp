@@ -1,0 +1,2 @@
+python: /project/python/src/ir.cc:56: llvm::raw_fd_ostream &(anonymous namespace)::mlir_dumps(): Assertion `!EC' failed.
+/commands/python: line 47: 19145 Aborted                 (core dumped) "$@"
